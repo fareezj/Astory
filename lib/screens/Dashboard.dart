@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    //vm = Provider.of<NewsViewModel>(context, listen: true);
+    vm = Provider.of<NewsViewModel>(context, listen: true);
     vmCategory = Provider.of<NewsCategoryViewModel>(context, listen: true);
 
     return Scaffold(
@@ -59,9 +59,9 @@ class _DashboardState extends State<Dashboard> {
                     IconButton(
                         icon: Icon(Icons.refresh),
                         onPressed: () {
-                          //vm.clearList();
-                          //vm.getNewsData();
-                          vmCategory.getNewsCategoryData('world');
+                          vm.clearList();
+                          vm.getNewsData();
+                          vmCategory.getNewsCategoryData('general');
                         }),
                     Text(vm.news.length.toString())
                   ],
@@ -98,7 +98,7 @@ class _DashboardState extends State<Dashboard> {
                             switch(tabController.index){
                               case 0: {
                                 vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('world');
+                                vmCategory.getNewsCategoryData('general');
                               }
                               break;
                               case 1: {
@@ -141,7 +141,7 @@ class _DashboardState extends State<Dashboard> {
                               indicatorColor: Colors.blue,
                               indicatorWeight: 1.5,
                               tabs: [
-                                Text('World',
+                                Text('General',
                                     style: GoogleFonts.poppins(
                                       fontSize: 18.0,
                                       color: Colors.blue,
@@ -248,7 +248,6 @@ class _DashboardState extends State<Dashboard> {
                                   itemCount: vmCategory.newsCategory.length,
                                 ),
                               ),
-
                             ],
                           ),
                         );
