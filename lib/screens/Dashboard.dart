@@ -32,8 +32,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    vm = Provider.of<NewsViewModel>(context, listen: true);
-    //vmCategory = Provider.of<NewsCategoryViewModel>(context, listen: true);
+    //vm = Provider.of<NewsViewModel>(context, listen: true);
+    vmCategory = Provider.of<NewsCategoryViewModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -59,9 +59,9 @@ class _DashboardState extends State<Dashboard> {
                     IconButton(
                         icon: Icon(Icons.refresh),
                         onPressed: () {
-                          vm.clearList();
-                          vm.getNewsData();
-                          //vmCategory.getNewsCategoryData('world');
+                          //vm.clearList();
+                          //vm.getNewsData();
+                          vmCategory.getNewsCategoryData('world');
                         }),
                     Text(vm.news.length.toString())
                   ],
@@ -69,106 +69,190 @@ class _DashboardState extends State<Dashboard> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height / 2,
-                child: Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return TopNewsTile(
-                        newsImage: vm.news[index].urlToImage,
-                        newsTitle: vm.news[index].title,
-                        newsDescription: vm.news[index].description,
-                        publishDate: vm.news[index].publishedAt,
-                        newsSource: vm.news[index].author,
-                      );
-                    },
-                    itemCount: vm.news.length,
-                  ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return TopNewsTile(
+                      newsImage: vm.news[index].urlToImage,
+                      newsTitle: vm.news[index].title,
+                      newsDescription: vm.news[index].description,
+                      publishDate: vm.news[index].publishedAt,
+                      newsSource: vm.news[index].author,
+                    );
+                  },
+                  itemCount: vm.news.length,
                 ),
               ),
               Container(
-                child: Expanded(
+                child: Flexible(
                   child: DefaultTabController(
-                    length: 6,
-                    child: Scaffold(
-                      appBar: AppBar(
-                        backgroundColor: Colors.white,
-                        elevation: 0,
-                        bottom: TabBar(
-                          isScrollable: true,
-                          labelPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-                          indicatorColor: Colors.blue,
-                          indicatorWeight: 1.5,
-                          tabs: [
-                            Text(
-                              'World',
-                              style: GoogleFonts.poppins(
-                                fontSize: 18.0,
-                                color: Colors.blue,
-                              )
+                      length: 6,
+                      child: Builder(builder: (BuildContext context) {
+                        final TabController tabController =
+                            DefaultTabController.of(context);
+                        tabController.addListener(() {
+                          if (!tabController.indexIsChanging) {
+                            // Your code goes here.
+                            // To get index of current tab use tabController.index
+                            print(tabController.index);
+                            switch(tabController.index){
+                              case 0: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('world');
+                              }
+                              break;
+                              case 1: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('technology');
+                              }
+                              break;
+                              case 2: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('sports');
+                              }
+                              break;
+                              case 3: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('business');
+                              }
+                              break;
+                              case 4: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('entertainment');
+                              }
+                              break;
+                              case 5: {
+                                vmCategory.clearList();
+                                vmCategory.getNewsCategoryData('science');
+                              }
+                              break;
+                            }
+                          }
+                        });
+                        return Scaffold(
+                          appBar: AppBar(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            bottom: TabBar(
+                              controller: tabController,
+                              isScrollable: true,
+                              labelPadding: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 5.0),
+                              indicatorColor: Colors.blue,
+                              indicatorWeight: 1.5,
+                              tabs: [
+                                Text('World',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                                Text('Technology',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                                Text('Sports',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                                Text('Business',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                                Text('Entertainment',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                                Text('Science',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.0,
+                                      color: Colors.blue,
+                                    )),
+                              ],
                             ),
-                            Text(
-                                'Technology',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18.0,
-                                  color: Colors.blue,
-                                )
-                            ),
-                            Text(
-                                'Sports',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18.0,
-                                  color: Colors.blue,
-                                )
-                            ),
-                            Text(
-                                'Business',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18.0,
-                                  color: Colors.blue,
-                                )
-                            ),
-                            Text(
-                                'Entertainment',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18.0,
-                                  color: Colors.blue,
-                                )
-                            ),
-                            Text(
-                                'Science',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18.0,
-                                  color: Colors.blue,
-                                )
-                            ),
+                          ),
+                          body: TabBarView(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return CategoryNewsTile(
+                                      newsImage: vmCategory.newsCategory[index].urlToImage,
+                                      newsTitle: vmCategory.newsCategory[index].title,
+                                      newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    );
+                                  },
+                                  itemCount: vmCategory.newsCategory.length,
+                                ),
+                              ),
 
-                          ],
-                        ),
-                      ),
-                      body: TabBarView(
-                        children: [
-                          // Expanded(
-                          //   child: ListView.builder(itemBuilder: (context, index) {
-                          //     return CategoryNewsTile(
-                          //       newsImage: vmCategory.newsCategory[index].urlToImage,
-                          //       newsTitle: vmCategory.newsCategory[index].title,
-                          //       newsDate: vmCategory.newsCategory[index].publishedAt,
-                          //     );
-                          //   },
-                          //     itemCount: vmCategory.newsCategory.length,
-                          //   ),
-                          // ),
-                          Icon(Icons.directions_car),
-                          Icon(Icons.flight),
-                          Icon(Icons.motorcycle),
-                          Icon(Icons.motorcycle),
-                          Icon(Icons.motorcycle),
-                          Icon(Icons.motorcycle),
-
-                        ],
-                      ),
-                    ),
-                  ),
+                            ],
+                          ),
+                        );
+                      })),
                 ),
               )
             ],

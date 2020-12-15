@@ -2,7 +2,7 @@ import 'package:astory/models/Article_Model.dart';
 import 'package:astory/services/Api_Service.dart';
 import 'package:flutter/material.dart';
 
-class NewsViewModel extends ChangeNotifier {
+class NewsViewModel  {
 
   List<ArticleModel> news = List<ArticleModel>();
 
@@ -13,7 +13,6 @@ class NewsViewModel extends ChangeNotifier {
       ArticleModel articleModel = new ArticleModel();
       articleModel = ArticleModel.fromJson(element);
       news.add(articleModel);
-      notifyListeners();
     });
   }
 

@@ -3,7 +3,7 @@ import 'package:astory/models/Article_Model.dart';
 import 'package:astory/services/Api_Service.dart';
 import 'package:flutter/cupertino.dart';
 
-class NewsCategoryViewModel  {
+class NewsCategoryViewModel extends ChangeNotifier {
 
   List<ArticleModel> newsCategory = List<ArticleModel>();
 
@@ -14,8 +14,14 @@ class NewsCategoryViewModel  {
       ArticleModel articleModel = new ArticleModel();
       articleModel = ArticleModel.fromJson(element);
       newsCategory.add(articleModel);
+      print(newsCategory);
+      notifyListeners();
     });
 
+  }
+
+  void clearList() {
+    newsCategory.clear();
   }
 
 }

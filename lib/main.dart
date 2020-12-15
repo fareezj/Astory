@@ -1,3 +1,4 @@
+import 'package:astory/viewmodels/News_Category_View_Model.dart';
 import 'package:astory/viewmodels/News_View_Model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: ChangeNotifierProvider(
-        create: (context) => NewsViewModel(),
+        create: (context) => NewsCategoryViewModel(),
         child: Dashboard(),
       )
     );
