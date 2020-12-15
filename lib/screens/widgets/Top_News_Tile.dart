@@ -74,7 +74,7 @@ class _TopNewsTileState extends State<TopNewsTile> {
                                 TextStyle(fontSize: 16.0, color: Colors.white),
                           ),
                           SizedBox(height: 15.0),
-                          Expanded(
+                          Flexible(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
