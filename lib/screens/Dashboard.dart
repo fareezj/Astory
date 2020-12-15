@@ -36,12 +36,16 @@ class _DashboardState extends State<Dashboard> {
     vmCategory = Provider.of<NewsCategoryViewModel>(context, listen: true);
 
     return Scaffold(
+
       appBar: AppBar(
-        title: Text('Astory'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text('Astory', style: GoogleFonts.poppins(color: Colors.blue, fontSize: 40.0, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          margin: EdgeInsets.only(top: 3.0),
+          height: MediaQuery.of(context).size.height * 1.2,
           child: Column(
             children: [
               Padding(
@@ -130,48 +134,50 @@ class _DashboardState extends State<Dashboard> {
                           }
                         });
                         return Scaffold(
-                          appBar: AppBar(
-                            backgroundColor: Colors.white,
-                            elevation: 0,
-                            bottom: TabBar(
-                              controller: tabController,
-                              isScrollable: true,
-                              labelPadding: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 5.0),
-                              indicatorColor: Colors.blue,
-                              indicatorWeight: 1.5,
-                              tabs: [
-                                Text('General',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                                Text('Technology',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                                Text('Sports',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                                Text('Business',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                                Text('Entertainment',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                                Text('Science',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18.0,
-                                      color: Colors.blue,
-                                    )),
-                              ],
+                          appBar: PreferredSize( preferredSize: Size.fromHeight(70.0),
+                            child: AppBar(
+                              backgroundColor: Colors.white,
+                              elevation: 0,
+                              bottom: TabBar(
+                                controller: tabController,
+                                isScrollable: true,
+                                labelPadding: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 5.0),
+                                indicatorColor: Colors.blue,
+                                indicatorWeight: 1.5,
+                                tabs: [
+                                  Text('General',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                  Text('Technology',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                  Text('Sports',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                  Text('Business',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                  Text('Entertainment',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                  Text('Science',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18.0,
+                                        color: Colors.blue,
+                                      )),
+                                ],
+                              ),
                             ),
                           ),
                           body: TabBarView(

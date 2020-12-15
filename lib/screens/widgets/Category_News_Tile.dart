@@ -36,10 +36,13 @@ class _CategoryNewsTileState extends State<CategoryNewsTile> {
                 widget.newsTitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
               )),
             ),
-            Text(formattedDate),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(formattedDate,
+                    style: GoogleFonts.poppins(fontSize: 12.0))),
           ],
         ));
   }
