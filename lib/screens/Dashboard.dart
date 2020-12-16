@@ -18,10 +18,20 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   var vm = NewsViewModel();
   var vmCategory = NewsCategoryViewModel();
+  var vmDelete = NewsCategoryViewModel();
+  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
+    print(context.read<NewsViewModel>().news.toString());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    vm.dispose();
+    vmCategory.dispose();
   }
 
   // @override
@@ -30,17 +40,22 @@ class _DashboardState extends State<Dashboard> {
   //   vm = Provider.of<NewsViewModel>(context, listen: true);
   // }
 
+
+
   @override
   Widget build(BuildContext context) {
     vm = Provider.of<NewsViewModel>(context, listen: true);
     vmCategory = Provider.of<NewsCategoryViewModel>(context, listen: true);
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text('Astory', style: GoogleFonts.poppins(color: Colors.blue, fontSize: 40.0, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Astory',
+          style: GoogleFonts.poppins(
+              color: Colors.blue, fontSize: 40.0, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -65,9 +80,11 @@ class _DashboardState extends State<Dashboard> {
                         onPressed: () {
                           vm.clearList();
                           vm.getNewsData();
+                          vmCategory.clearList();
                           vmCategory.getNewsCategoryData('general');
+
                         }),
-                    Text(vm.news.length.toString())
+                    Text(vmCategory.newsCategory.length.toString())
                   ],
                 ),
               ),
@@ -98,43 +115,63 @@ class _DashboardState extends State<Dashboard> {
                           if (!tabController.indexIsChanging) {
                             // Your code goes here.
                             // To get index of current tab use tabController.index
-                            print(tabController.index);
-                            switch(tabController.index){
-                              case 0: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('general');
-                              }
-                              break;
-                              case 1: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('technology');
-                              }
-                              break;
-                              case 2: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('sports');
-                              }
-                              break;
-                              case 3: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('business');
-                              }
-                              break;
-                              case 4: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('entertainment');
-                              }
-                              break;
-                              case 5: {
-                                vmCategory.clearList();
-                                vmCategory.getNewsCategoryData('science');
-                              }
-                              break;
+                            if(tabController.index == 0) {
+                              vmCategory.clearList();
+                              vmCategory.getNewsCategoryData('general');
+                              print(vmCategory.newsCategory.length);
+                            }else{
+                              vmCategory.clearList();
+                              vmCategory.getNewsCategoryData('sports');
+                              print(vmCategory.newsCategory.length);
                             }
+
+                            // switch (tabController.index) {
+                            //   case 0:
+                            //     {
+                            //       vmCategory.clearList();
+                            //       vmCategory.getNewsCategoryData('general');
+                            //        print(vmCategory.newsCategory.length);
+                            //     }
+                            //     break;
+                            //   case 1:
+                            //     {
+                            //       vmCategory.clearList();
+                            //        vmCategory.getNewsCategoryData('technology');
+                            //        print(vmCategory.newsCategory.length);
+                            //
+                            //     }
+                            //     break;
+                            //   case 2:
+                            //     {
+                            //       // vmCategory.clearList();
+                            //       // vmCategory.getNewsCategoryData('sports');
+                            //     }
+                            //     break;
+                            //   case 3:
+                            //     {
+                            //       // vmCategory.clearList();
+                            //       // vmCategory.getNewsCategoryData('business');
+                            //     }
+                            //     break;
+                            //   case 4:
+                            //     {
+                            //       // vmCategory.clearList();
+                            //       // vmCategory.getNewsCategoryData('entertainment');
+                            //     }
+                            //     break;
+                            //   case 5:
+                            //     {
+                            //       // vmCategory.clearList();
+                            //       // vmCategory.getNewsCategoryData('science');
+                            //     }
+                            //     break;
+                            // }
                           }
-                        });
+                        }
+                        );
                         return Scaffold(
-                          appBar: PreferredSize( preferredSize: Size.fromHeight(70.0),
+                          appBar: PreferredSize(
+                            preferredSize: Size.fromHeight(70.0),
                             child: AppBar(
                               backgroundColor: Colors.white,
                               elevation: 0,
@@ -185,9 +222,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,
@@ -195,9 +235,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,
@@ -205,9 +248,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,
@@ -215,9 +261,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,
@@ -225,9 +274,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,
@@ -235,9 +287,12 @@ class _DashboardState extends State<Dashboard> {
                               ListView.builder(
                                 itemBuilder: (context, index) {
                                   return CategoryNewsTile(
-                                    newsImage: vmCategory.newsCategory[index].urlToImage,
-                                    newsTitle: vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory.newsCategory[index].publishedAt,
+                                    newsImage: vmCategory
+                                        .newsCategory[index].urlToImage,
+                                    newsTitle:
+                                        vmCategory.newsCategory[index].title,
+                                    newsDate: vmCategory
+                                        .newsCategory[index].publishedAt,
                                   );
                                 },
                                 itemCount: vmCategory.newsCategory.length,

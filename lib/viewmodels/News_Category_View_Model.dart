@@ -14,7 +14,6 @@ class NewsCategoryViewModel extends ChangeNotifier {
       ArticleModel articleModel = new ArticleModel();
       articleModel = ArticleModel.fromJson(element);
       newsCategory.add(articleModel);
-      print(newsCategory);
       notifyListeners();
     });
 
@@ -22,6 +21,7 @@ class NewsCategoryViewModel extends ChangeNotifier {
 
   void clearList() {
     newsCategory.clear();
+    notifyListeners();
   }
 
 }

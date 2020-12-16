@@ -19,5 +19,6 @@ class NewsViewModel extends ChangeNotifier {
 
   void clearList() {
     news.clear();
+    notifyListeners();
   }
 }

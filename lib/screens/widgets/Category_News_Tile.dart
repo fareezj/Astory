@@ -1,3 +1,4 @@
+import 'package:astory/utils/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,7 +29,7 @@ class _CategoryNewsTileState extends State<CategoryNewsTile> {
               margin: EdgeInsets.symmetric(horizontal: 25.0),
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-              child: Image.network(widget.newsImage),
+              child: Image.network(widget.newsImage != null ? widget.newsImage : Constants().IMAGE_UNAVAILABLE),
             ),
             Flexible(
               child: Container(
