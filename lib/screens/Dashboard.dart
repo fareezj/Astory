@@ -1,6 +1,7 @@
 import 'package:astory/models/Article_Model.dart';
 import 'package:astory/models/News_Model.dart';
 import 'package:astory/screens/widgets/Category_News_Tile.dart';
+import 'package:astory/screens/widgets/Tab_Bar_View_Widget.dart';
 import 'package:astory/screens/widgets/Tab_Bar_Widget.dart';
 import 'package:astory/screens/widgets/Top_News_Tile.dart';
 import 'package:astory/services/Api_Service.dart';
@@ -177,84 +178,12 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           body: TabBarView(
                             children: [
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
-                              ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return CategoryNewsTile(
-                                    newsImage: vmCategory
-                                        .newsCategory[index].urlToImage,
-                                    newsTitle:
-                                        vmCategory.newsCategory[index].title,
-                                    newsDate: vmCategory
-                                        .newsCategory[index].publishedAt,
-                                  );
-                                },
-                                itemCount: vmCategory.newsCategory.length,
-                              ),
+                              TabBarViewItem(),
+                              TabBarViewItem(),
+                              TabBarViewItem(),
+                              TabBarViewItem(),
+                              TabBarViewItem(),
+                              TabBarViewItem(),
                             ],
                           ),
                         );
