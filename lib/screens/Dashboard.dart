@@ -1,14 +1,9 @@
-import 'package:astory/models/Article_Model.dart';
-import 'package:astory/models/News_Model.dart';
-import 'package:astory/screens/widgets/Category_News_Tile.dart';
 import 'package:astory/screens/widgets/Tab_Bar_View_Widget.dart';
 import 'package:astory/screens/widgets/Tab_Bar_Widget.dart';
 import 'package:astory/screens/widgets/Top_News_Tile.dart';
-import 'package:astory/services/Api_Service.dart';
 import 'package:astory/viewmodels/News_Category_View_Model.dart';
 import 'package:astory/viewmodels/News_View_Model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
