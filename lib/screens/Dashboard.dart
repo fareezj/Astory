@@ -1,3 +1,4 @@
+import 'package:astory/screens/widgets/Category_News_Tile.dart';
 import 'package:astory/screens/widgets/Tab_Bar_View_Widget.dart';
 import 'package:astory/screens/widgets/Tab_Bar_Widget.dart';
 import 'package:astory/screens/widgets/Top_News_Tile.dart';
@@ -160,8 +161,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   }
                                   break;
                               }
-                            } else {
-                              Lottie.asset('assets/paperplane.json');
+                            }else {
+                              vmCategory.clearList();
                             }
                           });
                           return Scaffold(
