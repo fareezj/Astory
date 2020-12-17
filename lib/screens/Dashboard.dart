@@ -1,6 +1,7 @@
 import 'package:astory/models/Article_Model.dart';
 import 'package:astory/models/News_Model.dart';
 import 'package:astory/screens/widgets/Category_News_Tile.dart';
+import 'package:astory/screens/widgets/Tab_Bar_Widget.dart';
 import 'package:astory/screens/widgets/Top_News_Tile.dart';
 import 'package:astory/services/Api_Service.dart';
 import 'package:astory/viewmodels/News_Category_View_Model.dart';
@@ -164,36 +165,12 @@ class _DashboardState extends State<Dashboard> {
                                 indicatorColor: Colors.blue,
                                 indicatorWeight: 1.5,
                                 tabs: [
-                                  Text('General',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
-                                  Text('Technology',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
-                                  Text('Sports',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
-                                  Text('Business',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
-                                  Text('Entertainment',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
-                                  Text('Science',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18.0,
-                                        color: Colors.blue,
-                                      )),
+                                  TabBarText(tabTitle: 'General'),
+                                  TabBarText(tabTitle: 'Technology'),
+                                  TabBarText(tabTitle: 'Sports'),
+                                  TabBarText(tabTitle: 'Business'),
+                                  TabBarText(tabTitle: 'Entertainment'),
+                                  TabBarText(tabTitle: 'Science'),
                                 ],
                               ),
                             ),
