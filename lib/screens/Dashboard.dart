@@ -89,15 +89,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold),
                       ),
-                      IconButton(
-                          icon: Icon(Icons.refresh),
-                          onPressed: () {
-                            vm.clearList();
-                            vm.getNewsData();
-                            vmCategory.clearList();
-                            vmCategory.getNewsCategoryData('general');
-                          }),
-                      Text(vmCategory.newsCategory.length.toString())
                     ],
                   ),
                 ),
