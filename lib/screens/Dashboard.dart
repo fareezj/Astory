@@ -40,8 +40,6 @@ class _DashboardState extends State<Dashboard> {
   //   vm = Provider.of<NewsViewModel>(context, listen: true);
   // }
 
-
-
   @override
   Widget build(BuildContext context) {
     vm = Provider.of<NewsViewModel>(context, listen: true);
@@ -82,7 +80,6 @@ class _DashboardState extends State<Dashboard> {
                           vm.getNewsData();
                           vmCategory.clearList();
                           vmCategory.getNewsCategoryData('general');
-
                         }),
                     Text(vmCategory.newsCategory.length.toString())
                   ],
@@ -115,57 +112,41 @@ class _DashboardState extends State<Dashboard> {
                           if (!tabController.indexIsChanging) {
                             // Your code goes here.
                             // To get index of current tab use tabController.index
-                            if(tabController.index == 0) {
-                              vmCategory.clearList();
-                              vmCategory.getNewsCategoryData('general');
-                              print(vmCategory.newsCategory.length);
-                            }else{
-                              vmCategory.clearList();
-                              vmCategory.getNewsCategoryData('sports');
-                              print(vmCategory.newsCategory.length);
-                            }
+                            switch (tabController.index) {
+                              case 0:
+                                {
+                                  vmCategory.getNewsCategoryData('general');
+                                   print(vmCategory.newsCategory.length);
+                                }
+                                break;
+                              case 1:
+                                {
+                                   vmCategory.getNewsCategoryData('technology');
+                                   print(vmCategory.newsCategory.length);
 
-                            // switch (tabController.index) {
-                            //   case 0:
-                            //     {
-                            //       vmCategory.clearList();
-                            //       vmCategory.getNewsCategoryData('general');
-                            //        print(vmCategory.newsCategory.length);
-                            //     }
-                            //     break;
-                            //   case 1:
-                            //     {
-                            //       vmCategory.clearList();
-                            //        vmCategory.getNewsCategoryData('technology');
-                            //        print(vmCategory.newsCategory.length);
-                            //
-                            //     }
-                            //     break;
-                            //   case 2:
-                            //     {
-                            //       // vmCategory.clearList();
-                            //       // vmCategory.getNewsCategoryData('sports');
-                            //     }
-                            //     break;
-                            //   case 3:
-                            //     {
-                            //       // vmCategory.clearList();
-                            //       // vmCategory.getNewsCategoryData('business');
-                            //     }
-                            //     break;
-                            //   case 4:
-                            //     {
-                            //       // vmCategory.clearList();
-                            //       // vmCategory.getNewsCategoryData('entertainment');
-                            //     }
-                            //     break;
-                            //   case 5:
-                            //     {
-                            //       // vmCategory.clearList();
-                            //       // vmCategory.getNewsCategoryData('science');
-                            //     }
-                            //     break;
-                            // }
+                                }
+                                break;
+                              case 2:
+                                {
+                                   vmCategory.getNewsCategoryData('sports');
+                                }
+                                break;
+                              case 3:
+                                {
+                                   vmCategory.getNewsCategoryData('business');
+                                }
+                                break;
+                              case 4:
+                                {
+                                   vmCategory.getNewsCategoryData('entertainment');
+                                }
+                                break;
+                              case 5:
+                                {
+                                   vmCategory.getNewsCategoryData('science');
+                                }
+                                break;
+                            }
                           }
                         }
                         );

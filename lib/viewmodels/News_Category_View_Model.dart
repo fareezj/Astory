@@ -7,16 +7,16 @@ class NewsCategoryViewModel extends ChangeNotifier {
 
   List<ArticleModel> newsCategory = List<ArticleModel>();
 
-  Future<void> getNewsCategoryData(String category) async {
+  Future<ArticleModel> getNewsCategoryData(String category) async {
 
     Map<String, dynamic> newsCategoryData = await ApiService().getNewsCategory(category);
+    newsCategory.clear();
     newsCategoryData['articles'].forEach((element) {
       ArticleModel articleModel = new ArticleModel();
       articleModel = ArticleModel.fromJson(element);
       newsCategory.add(articleModel);
       notifyListeners();
     });
-
   }
 
   void clearList() {
